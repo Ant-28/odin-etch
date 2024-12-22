@@ -17,7 +17,7 @@ function createRow(block=16, cols = block){
     newRow.classList.add("blockRow");
     newRow.padding = `0px`;
     newRow.style.border = "none";
-    // newRow.style.flex = `1`;
+    newRow.style.flex = `1`;
 
     createColumns(myBox, newRow, cols);
     myBox.appendChild(newRow);
@@ -45,11 +45,43 @@ for(let j = 0; j < n; j++){
 
 var elements = document.getElementsByClassName('blockItem');
 
-// https://stackoverflow.com/questions/76139442/how-to-make-a-hover-effect-in-javascript
-var myFunction = function() {
-    console.log(this)
-        this.style.backgroundColor = 'red';
-    };
-    for (var i = 0; i < elements.length; i++) {
-        elements[i].addEventListener('mouseover', myFunction, false);
+    // https://stackoverflow.com/questions/76139442/how-to-make-a-hover-effect-in-javascript
+for (var i = 0; i < elements.length; i++) {
+    elements[i].addEventListener('mouseover', (e) => {
+        e.target.style.backgroundColor = 'red';
+    }, false);
+}
+
+
+
+var reset = document.getElementsByClassName('reset');
+
+reset[0].addEventListener('click', (e) => {
+   
+    let result = prompt("Write a new window size (between 0 and 100)","0");
+    if(parseInt(result) == NaN){
+        result = 10;
     }
+    result = parseInt(result);
+    console.log(result);
+    let myBox = document.querySelector('div.centerbox');
+    while(myBox.firstChild){
+        myBox.removeChild(myBox.lastChild);
+    }
+    // clear result: 
+    if (0 <= result <= 100){
+        
+        for(let j = 0; j < result; j++){
+            console.log('row');
+            createRow(result);    
+        }
+    }
+    var elements = document.getElementsByClassName('blockItem');
+
+    // https://stackoverflow.com/questions/76139442/how-to-make-a-hover-effect-in-javascript
+for (var i = 0; i < elements.length; i++) {
+    elements[i].addEventListener('mouseover', (e) => {
+        e.target.style.backgroundColor = 'red';
+    }, false);
+}
+});
