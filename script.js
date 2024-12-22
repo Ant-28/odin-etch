@@ -26,7 +26,7 @@ function createRow(block=16, cols = block){
 
 function createColumns(myBox, newRow, cols){
     for(let i = 0; i < cols; i++){
-        console.log('col');
+       // console.log('col');
         newItem = document.createElement('div');
         newItem.classList.add('blockItem');
         newItem.style.height = `${(getWindowWidth(myBox) - 4)/cols}px`;
@@ -39,7 +39,7 @@ function createColumns(myBox, newRow, cols){
 // cursed rows
 var n = 100;
 for(let j = 0; j < n; j++){
-    console.log('row');
+   // console.log('row');
     createRow(n);    
 }
 
@@ -63,19 +63,21 @@ reset[0].addEventListener('click', (e) => {
         result = 10;
     }
     result = parseInt(result);
-    console.log(result);
+   
     let myBox = document.querySelector('div.centerbox');
     while(myBox.firstChild){
         myBox.removeChild(myBox.lastChild);
     }
     // clear result: 
-    if (0 <= result <= 100){
-        
-        for(let j = 0; j < result; j++){
-            console.log('row');
-            createRow(result);    
-        }
+    if (result < 0 || result >= 100){
+        result = 10;
     }
+    console.log(result);
+    for(let j = 0; j < result; j++){
+        // console.log('row');
+        createRow(result);    
+    }
+    
     var elements = document.getElementsByClassName('blockItem');
 
     // https://stackoverflow.com/questions/76139442/how-to-make-a-hover-effect-in-javascript
